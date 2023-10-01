@@ -6,11 +6,9 @@ import TagValidatorForm from './forms/TagValidatorForm';
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <div className="App">
-        <header className="App-header">
-          <TagValidatorForm />
-        </header>
+    <Provider data-testid="store-provider" store={store}>
+      <div className="app">
+        <TagValidatorForm data-testid="tag-validator-form" />
       </div>
     </Provider>
   );

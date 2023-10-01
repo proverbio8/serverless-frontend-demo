@@ -9,7 +9,7 @@ import { TagValidateResponse, validateTagApi } from './tag.api';
 import { ActionTypes } from './tag.actions';
 import { AxiosError } from 'axios';
 
-function* validateTagSaga(action: PayloadAction<string>): Generator {
+export function* validateTagSaga(action: PayloadAction<string>): Generator {
   try {
     yield put(validateTagLoading());
     const response = yield call(validateTagApi, action.payload);
