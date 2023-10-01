@@ -1,8 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import './App.css';
-import store from "./store";
-import TagValidatorForm from "./forms/TagValidatorForm";
+import store from './store';
+import TagValidatorForm from './forms/TagValidatorForm';
 
 const App = () => {
   return (
@@ -14,6 +14,6 @@ const App = () => {
       </div>
     </Provider>
   );
-}
+};
 
 export default App;

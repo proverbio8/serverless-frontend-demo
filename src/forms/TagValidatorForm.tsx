@@ -1,9 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {TextField, Stack, Card, Typography, Container, Box, useTheme} from '@mui/material';
-import {RootState} from "../store/reducer";
-import {validateTag, validateTagClear} from "../store/tag/tag.actions";
-import {LoadingButton} from "../components";
+import {
+  TextField,
+  Stack,
+  Card,
+  Typography,
+  Container,
+  Box,
+  useTheme,
+} from '@mui/material';
+import { RootState } from '../store/reducer';
+import { validateTag, validateTagClear } from '../store/tag/tag.actions';
+import { LoadingButton } from '../components';
 
 const TagValidatorForm: React.FC = () => {
   const theme = useTheme();
@@ -23,7 +31,11 @@ const TagValidatorForm: React.FC = () => {
         {'<Tags Validator/>'}
       </Typography>
       <Card sx={{ padding: theme.spacing(2), boxSizing: 'border-box' }}>
-        {error && <Typography variant="overline" color="error">{error}</Typography>}
+        {error && (
+          <Typography variant="overline" color="error">
+            {error}
+          </Typography>
+        )}
         {data && <Typography variant="overline">{data.message}</Typography>}
         <form onSubmit={handleSubmit}>
           <Stack spacing={2}>
@@ -34,7 +46,7 @@ const TagValidatorForm: React.FC = () => {
               maxRows={30}
               multiline
               value={text}
-              onChange={(e) => {
+              onChange={e => {
                 dispatch(validateTagClear());
                 setText(e.target.value);
               }}
@@ -44,17 +56,20 @@ const TagValidatorForm: React.FC = () => {
             />
 
             <Box display="flex" justifyContent="center" marginTop={2}>
-              <LoadingButton type="submit" variant="contained" color="primary" loading={loading}>
+              <LoadingButton
+                type="submit"
+                variant="contained"
+                color="primary"
+                loading={loading}
+              >
                 Validate
               </LoadingButton>
             </Box>
-
           </Stack>
         </form>
       </Card>
     </Container>
-
   );
-}
+};
 
 export default TagValidatorForm;

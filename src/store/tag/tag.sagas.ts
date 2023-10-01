@@ -1,17 +1,26 @@
-import { put, call, delay, takeEvery } from 'redux-saga/effects';
+import { put, call, takeEvery } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
-import { validateTagError, validateTagLoading, validateTagSuccess } from './tag.actions';
-import {TagValidateResponse, validateTagApi} from "./tag.api";
-import {ActionTypes} from "./tag.actions";
+import {
+  validateTagError,
+  validateTagLoading,
+  validateTagSuccess,
+} from './tag.actions';
+import { TagValidateResponse, validateTagApi } from './tag.api';
+import { ActionTypes } from './tag.actions';
+import { AxiosError } from 'axios';
 
-function* validateTagSaga(action: PayloadAction<string>): Generator<any> {
+function* validateTagSaga(action: PayloadAction<string>): Generator {
   try {
     yield put(validateTagLoading());
-    //yield delay(5000); // wait for 5 seconds
     const response = yield call(validateTagApi, action.payload);
     yield put(validateTagSuccess(response as TagValidateResponse));
-  } catch (error: any) {
-    yield put(validateTagError(error?.response?.data?.message || error?.message as string));
+  } catch (error) {
+    const axiosError = error as AxiosError<TagValidateResponse>;
+    yield put(
+      validateTagError(
+        axiosError?.response?.data?.message || (axiosError?.message as string),
+      ),
+    );
   }
 }
 
