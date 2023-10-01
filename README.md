@@ -25,3 +25,9 @@ To run as a production build in Docker please
 
 - Run `docker build -t tag-frontend .`
 - Run `docker run -p 80:80 tag-frontend`
+
+## TODO
+
+- Setup Github pipelines
+- Setup AWS resources with Pulumi
+- Add more unit tests

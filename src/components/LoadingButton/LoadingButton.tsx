@@ -21,7 +21,11 @@ const LoadingButton: React.FC<LoadingButtonProps> = ({
         },
       }}
     >
-      {loading ? <CircularProgress size={24} /> : children}
+      {loading ? (
+        <CircularProgress size={24} data-testid="button-loading" />
+      ) : (
+        children
+      )}
     </Button>
   );
 };
